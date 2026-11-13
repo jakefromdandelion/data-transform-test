@@ -14,11 +14,14 @@ WITH heat_pump_tasks AS (
   SELECT
     sheet_id,
     row_id,
+    job_unit_unique_id,
+    region,
     community_name,
     sheet_name,
     homesite,
     lot,
     model_type,
+    swing,
     task_status,
     actual_finish
   FROM `dandelion-tf-production.dbt_dandelion_operations.fct__enterprise_master_project_data`
@@ -65,11 +68,14 @@ unit_counts AS (
 SELECT
   tasks.sheet_id,
   tasks.row_id,
+  tasks.job_unit_unique_id AS job_unit_number,
+  tasks.region,
   tasks.community_name,
   tasks.sheet_name,
   tasks.homesite,
   tasks.lot,
   tasks.model_type,
+  tasks.swing,
   tasks.task_status,
   tasks.actual_finish,
   units.unit_number,
